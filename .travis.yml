@@ -1,0 +1,15 @@
+language: csharp
+
+mono:
+  - latest
+
+solution: Collections.sln
+
+install:
+  - nuget restore Collections.sln
+  - nuget install NUnit.Runners -Version 2.6.4 -OutputDirectory testrunner
+  
+script:
+  - xbuild /p:Configuration=Release Collections.sln
+  - mono ./testrunner/NUnit.Runners.2.6.4/tools/nunit-console.exe 
+./CollectionsTest.Tests/bin/Release/CollectionsTest.Tests.dll
