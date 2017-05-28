@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Collections;
 using NUnit.Framework;
 
 namespace CollectionsTest
@@ -9,7 +9,7 @@ namespace CollectionsTest
         [Test]
         public void Test1()
         {
-            Assert.True(true);
+            var collection = new Collection<int>();
         }
     }
 }
