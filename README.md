@@ -6,50 +6,27 @@
 
 ## About jkniest/Collections
 
-
-
-Collections is a c# library that includes better collections. It's inspired by the Illuminate 
-
-collecions (creators of the laravel framework).
-
+Collections is a c# library that includes better collections. It's inspired by the Illuminate collections (creators of the laravel framework).
 
 
 ## Installation
 
-
-
 #### NuGet
-
 - TODO
-
-
 
 #### Manual
-
 - TODO
-
-
-
 
 
 ## Usage
 
-
-
 For a detailed description of every command (with examples) visit the github wiki for this project:
-
 [-> Go to wiki](https://github.com/jkniest/Collections/wiki)
 
 
-
-
-
-## License
+# License
 
 The jkniest/Collections package is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-
-
 
 
 ## Roadmap
