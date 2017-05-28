@@ -27,6 +27,12 @@ namespace Collections
         /// <typeparam name="TReturn">The return type of this callable</typeparam>
         public delegate TReturn ReduceCallback<TReturn>(TReturn current, TList item);
 
+        /// <summary>
+        /// This callback is used for the average method.
+        /// </summary>
+        /// <param name="item">The current item's value</param>
+        public delegate int AvgCallback(TList item);
+        
         #endregion
 
         #region CONSTRUCTOR
@@ -99,6 +105,39 @@ namespace Collections
         public TList[] All()
         {
             return ToArray();
+        }
+        
+        #endregion
+        
+        #region AVG
+
+        /// <summary>
+        /// Return the average value based on the return value of the callable.
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#avg
+        /// 
+        /// </summary>
+        /// <param name="callable">The callable that each item passes</param>
+        /// <returns>The average value</returns>
+        public virtual int Avg(AvgCallback callable)
+        {
+            var avg = Reduce((value, item) => value + callable(item), 0);
+
+            return avg / Count;
+        }
+
+        /// <summary>
+        /// Return the average value based on the return value of the callable.
+        /// Alias for 'Avg'
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#avg
+        /// 
+        /// </summary>
+        /// <param name="callable">The callable that each item passes</param>
+        /// <returns>The average value</returns>
+        public int Average(AvgCallback callable)
+        {
+            return Avg(callable);
         }
         
         #endregion

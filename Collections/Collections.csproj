@@ -40,6 +40,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collection.cs" />
+    <Compile Include="DoubleCollectionExtensions.cs" />
+    <Compile Include="FloatCollectionExtensions.cs" />
+    <Compile Include="IntCollectionExtensions.cs" />
+    <Compile Include="LongCollectionExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -35,7 +35,7 @@ The jkniest/Collections package is open-sourced software licensed under the [MIT
 
  - [x] Method: Reduce
  - [x] Method: All
- - [ ] Method: Avg / Average
+ - [x] Method: Avg / Average
  - [ ] Method: Median
  - [ ] Method: Mode
  - [ ] Method: Diff
