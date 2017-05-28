@@ -28,10 +28,28 @@ namespace Collections
         public delegate TReturn ReduceCallback<TReturn>(TReturn current, TList item);
 
         /// <summary>
-        /// This callback is used for the average method.
+        /// This callback accepts the item and needs to return an integer.
         /// </summary>
         /// <param name="item">The current item's value</param>
-        public delegate int AvgCallback(TList item);
+        public delegate int IntItemCallback(TList item);
+        
+        /// <summary>
+        /// This callback accepts the item and needs to return a float.
+        /// </summary>
+        /// <param name="item">The current item's value</param>
+        public delegate float FloatItemCallback(TList item);
+        
+        /// <summary>
+        /// This callback accepts the item and needs to return a double.
+        /// </summary>
+        /// <param name="item">The current item's value</param>
+        public delegate double DoubleItemCallback(TList item);
+        
+        /// <summary>
+        /// This callback accepts the item and needs to return a long.
+        /// </summary>
+        /// <param name="item">The current item's value</param>
+        public delegate long LongItemCallback(TList item);
         
         #endregion
 
@@ -119,7 +137,7 @@ namespace Collections
         /// </summary>
         /// <param name="callable">The callable that each item passes</param>
         /// <returns>The average value</returns>
-        public virtual int Avg(AvgCallback callable)
+        public virtual int Avg(IntItemCallback callable)
         {
             var avg = Reduce((value, item) => value + callable(item), 0);
 
@@ -135,7 +153,94 @@ namespace Collections
         /// </summary>
         /// <param name="callable">The callable that each item passes</param>
         /// <returns>The average value</returns>
-        public int Average(AvgCallback callable)
+        public int Average(IntItemCallback callable)
+        {
+            return Avg(callable);
+        }
+        
+        /// <summary>
+        /// Return the average value based on the return value of the callable.
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#avg
+        /// 
+        /// </summary>
+        /// <param name="callable">The callable that each item passes</param>
+        /// <returns>The average value</returns>
+        public virtual float Avg(FloatItemCallback callable)
+        {
+            var avg = Reduce((value, item) => value + callable(item), 0f);
+
+            return avg / Count;
+        }
+
+        /// <summary>
+        /// Return the average value based on the return value of the callable.
+        /// Alias for 'Avg'
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#avg
+        /// 
+        /// </summary>
+        /// <param name="callable">The callable that each item passes</param>
+        /// <returns>The average value</returns>
+        public float Average(FloatItemCallback callable)
+        {
+            return Avg(callable);
+        }
+        
+        /// <summary>
+        /// Return the average value based on the return value of the callable.
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#avg
+        /// 
+        /// </summary>
+        /// <param name="callable">The callable that each item passes</param>
+        /// <returns>The average value</returns>
+        public virtual double Avg(DoubleItemCallback callable)
+        {
+            var avg = Reduce((value, item) => value + callable(item), 0d);
+
+            return avg / Count;
+        }
+
+        /// <summary>
+        /// Return the average value based on the return value of the callable.
+        /// Alias for 'Avg'
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#avg
+        /// 
+        /// </summary>
+        /// <param name="callable">The callable that each item passes</param>
+        /// <returns>The average value</returns>
+        public double Average(DoubleItemCallback callable)
+        {
+            return Avg(callable);
+        }
+        
+        /// <summary>
+        /// Return the average value based on the return value of the callable.
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#avg
+        /// 
+        /// </summary>
+        /// <param name="callable">The callable that each item passes</param>
+        /// <returns>The average value</returns>
+        public virtual long Avg(LongItemCallback callable)
+        {
+            var avg = Reduce((value, item) => value + callable(item), 0L);
+
+            return avg / Count;
+        }
+
+        /// <summary>
+        /// Return the average value based on the return value of the callable.
+        /// Alias for 'Avg'
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#avg
+        /// 
+        /// </summary>
+        /// <param name="callable">The callable that each item passes</param>
+        /// <returns>The average value</returns>
+        public long Average(LongItemCallback callable)
         {
             return Avg(callable);
         }

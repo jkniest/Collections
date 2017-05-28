@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using Collections;
 using NUnit.Framework;
@@ -69,7 +68,7 @@ namespace CollectionsTest
         }
 
         [Test]
-        public void it_can_return_the_average_value_based_on_a_callback()
+        public void it_can_return_the_average_value_based_on_an_integer_callback()
         {
             // Given: We have a collection with three persons
             var collection = new Collection<Person>(new Person(10), new Person(45), new Person(36));
@@ -82,5 +81,51 @@ namespace CollectionsTest
             Assert.AreEqual(30, avg);
             Assert.AreEqual(30, average);
         }
+        
+        [Test]
+        public void it_can_return_the_average_value_based_on_a_float_callback()
+        {
+            // Given: We have a collection with three persons
+            var collection = new Collection<Person>(new Person(10, 1.45f), new Person(45, 1.96f), new Person(36, 1.84f));
+            
+            // When: We fetch the average height (using avg and average)
+            var avg = collection.Avg(person => person.Height);
+            var average = collection.Average(person => person.Height);
+            
+            // Then: The average height should be 1.75
+            Assert.AreEqual(1.75f, avg);
+            Assert.AreEqual(1.75f, average);
+        }
+        
+        [Test]
+        public void it_can_return_the_average_value_based_on_a_double_callback()
+        {
+            // Given: We have a collection with three streets
+            var collection = new Collection<Street>(new Street(105.4), new Street(50.5), new Street(84.4));
+            
+            // When: We fetch the average length (using avg and average)
+            var avg = collection.Avg(street => street.Length);
+            var average = collection.Average(street => street.Length);
+            
+            // Then: The average length should be 80.1
+            Assert.IsTrue(avg - 80.1 <= 0.0005);
+            Assert.IsTrue(average - 80.1 <= 0.0005);
+        }
+        
+        [Test]
+        public void it_can_return_the_average_value_based_on_a_long_callback()
+        {
+            // Given: We have a collection with three countries
+            var collection = new Collection<Country>(new Country(1000000000), new Country(3100000000), new Country(5000000));
+            
+            // When: We fetch the average population (using avg and average)
+            var avg = collection.Avg(country => country.Population);
+            var average = collection.Average(country => country.Population);
+            
+            // Then: The average population should be 1368333333
+            Assert.AreEqual(1368333333, avg);
+            Assert.AreEqual(1368333333, average);
+        }
+        
     }
 }

@@ -4,9 +4,12 @@ namespace CollectionsTest
     {
         public int Age;
 
-        public Person(int age)
+        public float Height;
+
+        public Person(int age, float height = 1.7f)
         {
             Age = age;
+            Height = height;
         }
     }
 }
