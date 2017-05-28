@@ -1,10 +1,4 @@
-<p align="center">
-
-    <a href="https://travis-ci.com/jkniest/Collections">
-
-        <img src="https://travis-ci.com/jkniest/Collections.svg?token=V2HFFCLc6NVnxsqjqD9v&branch=develop">
-
-    </a> <img src="https://img.shields.io/badge/Version-1.0%20(DEV)-yellow.svg"></p>
+<p align="center"><a href="https://travis-ci.com/jkniest/Collections"><img src="https://travis-ci.com/jkniest/Collections.svg?token=V2HFFCLc6NVnxsqjqD9v&branch=develop"></a> <img src="https://img.shields.io/badge/Version-1.0%20(DEV)-yellow.svg"></p>
 
 
 
