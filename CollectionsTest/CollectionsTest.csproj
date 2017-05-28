@@ -42,6 +42,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AllTests.cs" />
     <Compile Include="ConstructorTests.cs" />
     <Compile Include="ReduceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

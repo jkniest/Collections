@@ -67,7 +67,7 @@ namespace Collections
         /// The reduce method converts a collection into some other type. 
         /// For example it could be used to sum the items (converting the collection to a single integer)
         /// 
-        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#Reduce
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#reduce
         /// 
         /// </summary>
         /// <param name="callable">The callback that passes each item in this collection</param>
@@ -84,6 +84,21 @@ namespace Collections
             });
 
             return result;
+        }
+        
+        #endregion
+        
+        #region ALL
+
+        /// <summary>
+        /// Return all items as an array. It is in fact an alias for the 'ToArray' method.
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#all
+        /// </summary>
+        /// <returns></returns>
+        public TList[] All()
+        {
+            return ToArray();
         }
         
         #endregion
