@@ -28,7 +28,7 @@ namespace Collections
         /// </summary>
         /// <param name="collection">The numeric collection</param>
         /// <returns>The average value</returns>
-        public static float Avgerage(this Collection<float> collection)
+        public static float Average(this Collection<float> collection)
         {
             return collection.Avg();
         }

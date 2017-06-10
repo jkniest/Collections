@@ -1,4 +1,4 @@
-using System.Linq;
+using System;
 using Collections;
 using NUnit.Framework;
 
@@ -12,7 +12,7 @@ namespace CollectionsTest
         {
             // Given: A collection with three floats
             var collection = new Collection<float>(1.6f, 2.5f, 10f);
-            
+               
             // When: We fetch the average value (using avg and average)
             var avg = collection.Avg();
             var average = collection.Average();
@@ -46,10 +46,10 @@ namespace CollectionsTest
             // When: We fetch the average value (using avg and average)
             var avg = collection.Avg();
             var average = collection.Average();
-            
+
             // Then: The result should be 4.7
-            Assert.IsTrue(avg - 4.7 < 0.0005f);
-            Assert.IsTrue(average - 4.7 < 0.0005f);
+            Assert.IsTrue(Math.Abs(avg - 4.7) < 0.0005f); 
+            Assert.IsTrue(Math.Abs(average - 4.7) < 0.0005f); 
         }
         
         [Test]
