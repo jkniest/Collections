@@ -14,9 +14,7 @@ namespace Collections
         /// <returns>The average value</returns>
         public static double Avg(this Collection<double> collection)
         {
-            var avg = collection.Reduce((value, item) => value + item, 0d);
-
-            return avg / collection.Count;
+            return collection.Avg(item => item);
         }
         
         /// <summary>
