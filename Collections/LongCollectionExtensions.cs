@@ -32,5 +32,22 @@ namespace Collections
         }
         
         #endregion
+
+        #region MEDIAN
+
+        /// <summary>
+        /// Return the median value 
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Numeric-methods#median
+        /// 
+        /// </summary>
+        /// <param name="collection">The numeric collection</param>
+        /// <returns>The average value</returns>
+        public static long Median(this Collection<long> collection)
+        {
+            return collection.Median(item => item);
+        }
+
+        #endregion
     }
 }

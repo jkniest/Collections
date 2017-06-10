@@ -246,5 +246,105 @@ namespace Collections
         }
         
         #endregion
+        
+        #region MEDIAN
+        
+        /// <summary>
+        /// Return the median value based on the return value of the callable.
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#median
+        /// 
+        /// </summary>
+        /// <param name="callable">The callable that each item passes</param>
+        /// <returns>The median value</returns>
+        public virtual int Median(IntItemCallback callable)
+        {
+            var items = new List<int>();
+            foreach (var item in All())
+            {
+                items.Add(callable(item));
+            }
+            
+            if (Count % 2 == 0)
+            {
+                return (items[Count / 2 - 1] + items[Count / 2]) / 2;
+            }
+            
+            return items[Count / 2];
+        }
+
+        /// <summary>
+        /// Return the median value based on the return value of the callable.
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#median
+        /// 
+        /// </summary>
+        /// <param name="callable">The callable that each item passes</param>
+        /// <returns>The average value</returns>
+        public virtual float Median(FloatItemCallback callable)
+        {
+            var items = new List<float>();
+            foreach (var item in All())
+            {
+                items.Add(callable(item));
+            }
+            
+            if (Count % 2 == 0)
+            {
+                return (items[Count / 2 - 1] + items[Count / 2]) / 2f;
+            }
+            
+            return items[Count / 2];
+        }
+        
+        /// <summary>
+        /// Return the median value based on the return value of the callable.
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#median
+        /// 
+        /// </summary>
+        /// <param name="callable">The callable that each item passes</param>
+        /// <returns>The average value</returns>
+        public virtual double Median(DoubleItemCallback callable)
+        {
+            var items = new List<double>();
+            foreach (var item in All())
+            {
+                items.Add(callable(item));
+            }
+            
+            if (Count % 2 == 0)
+            {
+                return (items[Count / 2 - 1] + items[Count / 2]) / 2d;
+            }
+            
+            return items[Count / 2];
+        }
+        
+        /// <summary>
+        /// Return the median value based on the return value of the callable.
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#median
+        /// 
+        /// </summary>
+        /// <param name="callable">The callable that each item passes</param>
+        /// <returns>The average value</returns>
+        public virtual long Median(LongItemCallback callable)
+        {
+            var items = new List<long>();
+            foreach (var item in All())
+            {
+                items.Add(callable(item));
+            }
+            
+            if (Count % 2 == 0)
+            {
+                return (items[Count / 2 - 1] + items[Count / 2]) / 2L;
+            }
+            
+            return items[Count / 2];
+        }
+        
+        #endregion
     }
 }
