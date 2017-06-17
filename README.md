@@ -44,7 +44,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
  - [x] Method: All
  - [x] Method: Avg / Average
  - [x] Method: Median
- - [ ] Method: Mode
+ - [x] Method: Mode
  - [ ] Method: Diff
  - [ ] Method: Each
  - [ ] Method: Every

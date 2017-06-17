@@ -346,5 +346,58 @@ namespace Collections
         }
         
         #endregion
+        
+        #region MODE
+
+        /// <summary>
+        /// Return the mode value of the collection. If there are multiple mode values then all of them
+        /// will be returned within a list.
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#mode 
+        /// 
+        /// </summary>
+        /// <returns>A new collection with the mode value(s)</returns>
+        public virtual Collection<TList> Mode()
+        {
+            var items = All();
+            var counts = new Dictionary<TList, int>();
+            
+            foreach( var item in items )
+            {
+                if (counts.ContainsKey(item))
+                {
+                    counts[item] = counts[item] + 1;
+                }
+                else
+                {
+                    counts[item] = 1;
+                }
+            }
+
+            var result = new Collection<TList>();
+            
+            var max = int.MinValue;
+            
+            foreach (var key in counts.Keys) 
+            {
+                if (counts[key] < max)
+                {
+                    continue;
+                }
+   
+                if (counts[key] == max)
+                {
+                    result.Add(key);
+                    continue;
+                }
+
+                max = counts[key];
+                result.Add(key);
+            }
+            
+            return new Collection<TList>(result);
+        }
+        
+        #endregion
     }
 }

@@ -47,6 +47,7 @@
     <Compile Include="ConstructorTests.cs" />
     <Compile Include="Country.cs" />
     <Compile Include="MedianTests.cs" />
+    <Compile Include="ModeTests.cs" />
     <Compile Include="Person.cs" />
     <Compile Include="ReduceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
