@@ -46,6 +46,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
  - [x] Method: Median
  - [x] Method: Mode
  - [x] Method: Diff
+ - [x] Method: Dump
  - [ ] Method: Each
  - [ ] Method: Every
  - [ ] Method: Filter

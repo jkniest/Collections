@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Collections
 {
@@ -427,6 +429,41 @@ namespace Collections
             return diff;
         }
         
+        #endregion
+        
+        #region DUMP
+
+        /// <summary>
+        /// Dump the whole collection to the console.
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#dump
+        /// 
+        /// </summary>
+        /// <returns>Itself</returns>
+        public virtual Collection<TList> Dump()
+        {
+            Console.WriteLine(this);
+            
+            return this;
+        }
+
+        /// <summary>
+        /// Convert the collection to a string.
+        /// 
+        /// Format: Collection<TYPE> (COUNT) [ItemA, ItemB]
+        /// 
+        /// </summary>
+        /// <returns>The string version of this collection</returns>
+        public override string ToString()
+        {
+            var type = typeof(TList).ToString();
+
+            var items = Reduce((current, item) => current + item + ", ", "");
+            items = items.Substring(0, items.Length - 2);
+            
+            return string.Format("Collection<{0}> ({1}) [{2}]", type, Count, items);
+        }
+
         #endregion
     }
 }
