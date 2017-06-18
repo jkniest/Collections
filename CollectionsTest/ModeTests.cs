@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Collections;
+﻿using Collections;
 using NUnit.Framework;
 
 namespace CollectionsTest

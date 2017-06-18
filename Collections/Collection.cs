@@ -399,5 +399,34 @@ namespace Collections
         }
         
         #endregion
+        
+        #region DIFF
+
+        /// <summary>
+        /// Compare the collection against another list (or array). It will return all values in the
+        /// original collection that are not present in the other collection.
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#diff
+        /// 
+        /// </summary>
+        /// <param name="other">The other collection</param>
+        /// <returns>The diff as a new collection</returns>
+        public virtual Collection<TList> Diff(IList<TList> other)
+        {
+            var diff = new Collection<TList>();
+
+            // Add all items that are in "self" but not in "other"
+            foreach (var item in All())
+            {
+                if (!other.Contains(item))
+                {
+                    diff.Add(item);
+                }
+            }
+ 
+            return diff;
+        }
+        
+        #endregion
     }
 }
