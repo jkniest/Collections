@@ -51,6 +51,12 @@ namespace Collections
         /// </summary>
         /// <param name="item">The current item's value</param>
         public delegate long LongItemCallback(TList item);
+        
+        /// <summary>
+        /// This callback accepts the item and needs to return a boolean.
+        /// </summary>
+        /// <param name="item">The current item's value</param>
+        public delegate bool BoolItemCallback(TList item);
 
         /// <summary>
         /// This callback accepts the item and does not need to return anything.
@@ -488,6 +494,23 @@ namespace Collections
             }
             
             return this;
+        }
+        
+        #endregion
+        
+        #region EVERY
+
+        /// <summary>
+        /// Test if every item in this collection passes a callable.
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#every
+        /// 
+        /// </summary>
+        /// <param name="callable">The callable that each item must pass</param>
+        /// <returns><c>true</c>, if all items passed the callable, otherwise <c>false</c></returns>
+        public virtual bool Every(BoolItemCallback callable)
+        {
+            return Reduce((value, item) => value && callable(item), true);
         }
         
         #endregion

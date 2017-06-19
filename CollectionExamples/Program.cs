@@ -15,6 +15,7 @@ namespace CollectionExamples
             TestMode();
             TestDiff();
             TestEach();
+            TestEvery();
 
             Console.ReadKey(true);
         }
@@ -104,6 +105,18 @@ namespace CollectionExamples
             
             // Print the result to the console
             Console.WriteLine("Each result: " + result); 
+        }
+
+        private static void TestEvery()
+        {
+            // Create a new collection with three integers
+            var collection = new Collection<int>(10, 20, 30);
+            
+            // Test if every item is greater than 8
+            var result = collection.Every(item => item > 8);
+            
+            // Print the result to the console
+            Console.WriteLine("Every result: " + result);
         }
     }
 }
