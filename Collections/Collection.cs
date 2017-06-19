@@ -52,6 +52,12 @@ namespace Collections
         /// </summary>
         /// <param name="item">The current item's value</param>
         public delegate long LongItemCallback(TList item);
+
+        /// <summary>
+        /// This callback accepts the item and does not need to return anything.
+        /// </summary>
+        /// <param name="item">The current item's value</param>
+        public delegate void VoidItemCallback(TList item);
         
         #endregion
 
@@ -464,6 +470,28 @@ namespace Collections
             return string.Format("Collection<{0}> ({1}) [{2}]", type, Count, items);
         }
 
+        #endregion
+        
+        #region EACH
+
+        /// <summary>
+        /// Iterate through each item call the callable.
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#each
+        /// 
+        /// </summary>
+        /// <param name="callable">The callable that each item passes</param>
+        /// <returns>Itself</returns>
+        public virtual Collection<TList> Each(VoidItemCallback callable)
+        {
+            foreach (var item in All())
+            {
+                callable(item);
+            }
+            
+            return this;
+        }
+        
         #endregion
     }
 }

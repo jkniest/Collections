@@ -14,6 +14,7 @@ namespace CollectionExamples
             TestMedian();
             TestMode();
             TestDiff();
+            TestEach();
 
             Console.ReadKey(true);
         }
@@ -60,7 +61,7 @@ namespace CollectionExamples
             var collection = new Collection<Person>(new Person(10), new Person(45), new Person(36));
             
             // Calculate the median age
-            var result = collection.Dump().Median(person => person.Age);
+            var result = collection.Median(person => person.Age);
             
             // Print the result to the console
             Console.WriteLine("Median result: " + result);
@@ -91,6 +92,18 @@ namespace CollectionExamples
             
             // Print the result to the console
             Console.WriteLine("Diff result: " + result);
+        }
+
+        private static void TestEach()
+        {
+            // Create a new collection with three persons (the first argument is their age)
+            var collection = new Collection<Person>(new Person(10), new Person(45), new Person(36));
+            
+            // Iterate through each item and double their age
+            var result = collection.Each(person => person.Age = person.Age * 2);
+            
+            // Print the result to the console
+            Console.WriteLine("Each result: " + result); 
         }
     }
 }
