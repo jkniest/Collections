@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 
 namespace Collections
 {
@@ -110,7 +109,7 @@ namespace Collections
         {
             var result = initial;
 
-            ForEach(item =>
+            Each(item =>
             {
                 result = callable(result, item);
             });
@@ -268,10 +267,10 @@ namespace Collections
         public virtual int Median(IntItemCallback callable)
         {
             var items = new List<int>();
-            foreach (var item in All())
+            Each(item =>
             {
                 items.Add(callable(item));
-            }
+            });
             
             if (Count % 2 == 0)
             {
@@ -292,10 +291,10 @@ namespace Collections
         public virtual float Median(FloatItemCallback callable)
         {
             var items = new List<float>();
-            foreach (var item in All())
+            Each(item =>
             {
                 items.Add(callable(item));
-            }
+            });
             
             if (Count % 2 == 0)
             {
@@ -316,10 +315,10 @@ namespace Collections
         public virtual double Median(DoubleItemCallback callable)
         {
             var items = new List<double>();
-            foreach (var item in All())
+            Each(item =>
             {
                 items.Add(callable(item));
-            }
+            });
             
             if (Count % 2 == 0)
             {
@@ -340,10 +339,10 @@ namespace Collections
         public virtual long Median(LongItemCallback callable)
         {
             var items = new List<long>();
-            foreach (var item in All())
+            Each(item =>
             {
                 items.Add(callable(item));
-            }
+            });
             
             if (Count % 2 == 0)
             {
@@ -367,10 +366,9 @@ namespace Collections
         /// <returns>A new collection with the mode value(s)</returns>
         public virtual Collection<TList> Mode()
         {
-            var items = All();
             var counts = new Dictionary<TList, int>();
-            
-            foreach( var item in items )
+
+            Each(item =>
             {
                 if (counts.ContainsKey(item))
                 {
@@ -380,7 +378,7 @@ namespace Collections
                 {
                     counts[item] = 1;
                 }
-            }
+            });
 
             var result = new Collection<TList>();
             
@@ -424,13 +422,13 @@ namespace Collections
             var diff = new Collection<TList>();
 
             // Add all items that are in "self" but not in "other"
-            foreach (var item in All())
+            Each(item =>
             {
                 if (!other.Contains(item))
                 {
                     diff.Add(item);
                 }
-            }
+            });
  
             return diff;
         }
