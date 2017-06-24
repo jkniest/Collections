@@ -16,6 +16,7 @@ namespace CollectionExamples
             TestDiff();
             TestEach();
             TestEvery();
+            TestFilter();
 
             Console.ReadKey(true);
         }
@@ -117,6 +118,18 @@ namespace CollectionExamples
             
             // Print the result to the console
             Console.WriteLine("Every result: " + result);
+        }
+
+        private static void TestFilter()
+        {
+            // Create a new collection with three integers
+            var collection = new Collection<int>(10, 20, 30);
+            
+            // Filter by every item that is greater than 15
+            var result = collection.Filter(item => item > 15);
+            
+            // Print the result to the console
+            Console.WriteLine("Filter result: " + result); 
         }
     }
 }

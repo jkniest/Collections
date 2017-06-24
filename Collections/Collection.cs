@@ -514,5 +514,30 @@ namespace Collections
         }
         
         #endregion
+        
+        #region FILTER
+
+        /// <summary>
+        /// Return a new collection with all items that are passing the callable.
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#filter
+        /// 
+        /// </summary>
+        /// <param name="callable">The callable which is used as a filter</param>
+        /// <returns>A new collection with all passed items</returns>
+        public virtual Collection<TList> Filter(BoolItemCallback callable)
+        {
+            return Reduce((collection, item) =>
+            {
+                if (callable(item))
+                {
+                    collection.Add(item);
+                }
+                
+                return collection;
+            }, new Collection<TList>());
+        }
+        
+        #endregion
     }
 }

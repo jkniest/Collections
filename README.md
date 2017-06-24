@@ -49,7 +49,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
  - [x] Method: Dump
  - [x] Method: Each
  - [x] Method: Every
- - [ ] Method: Filter
+ - [x] Method: Filter
  - [ ] Method: When
  - [ ] Method: First
  - [ ] Method: Implode
