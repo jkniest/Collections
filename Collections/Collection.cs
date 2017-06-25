@@ -556,5 +556,22 @@ namespace Collections
         }
 
         #endregion
+
+        #region FIRST
+
+        /// <summary>
+        /// Return the first item of a collection (optional the first item that passes a callable)
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#first 
+        /// 
+        /// </summary>
+        /// <param name="callable">A optional callable to filter the items</param>
+        /// <returns>The first item of the (filtered) collection</returns>
+        public virtual TList First(BoolItemCallback callable = null)
+        {
+            return callable != null ? Filter(callable).First() : All()[0];
+        }
+
+        #endregion
     }
 }

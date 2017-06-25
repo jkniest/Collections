@@ -18,6 +18,7 @@ namespace CollectionExamples
             TestEvery();
             TestFilter();
             TestWhen();
+            TestFirst();
 
             Console.ReadKey(true);
         }
@@ -147,6 +148,18 @@ namespace CollectionExamples
 
             // Print the result to the console
             Console.WriteLine("When result: " + result);
+        }
+        
+        private static void TestFirst()
+        {
+            // Create a new collection with three integers
+            var collection = new Collection<int>(10, 20, 30);
+
+            // Fetch the first item
+            var result = collection.First();
+
+            // Print the result to the console
+            Console.WriteLine("First result: " + result);
         }
     }
 }

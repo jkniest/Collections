@@ -51,6 +51,7 @@
     <Compile Include="EachTests.cs" />
     <Compile Include="EveryTest.cs" />
     <Compile Include="FilterTests.cs" />
+    <Compile Include="FirstTests.cs" />
     <Compile Include="MedianTests.cs" />
     <Compile Include="ModeTests.cs" />
     <Compile Include="Person.cs" />
