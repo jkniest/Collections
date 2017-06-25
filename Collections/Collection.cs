@@ -33,31 +33,31 @@ namespace Collections
         /// </summary>
         /// <param name="collection">A copy of the collection</param>
         public delegate Collection<TList> CollectionCallback(Collection<TList> collection);
-        
+
         /// <summary>
         /// This callback accepts the item and needs to return an integer.
         /// </summary>
         /// <param name="item">The current item's value</param>
         public delegate int IntItemCallback(TList item);
-        
+
         /// <summary>
         /// This callback accepts the item and needs to return a float.
         /// </summary>
         /// <param name="item">The current item's value</param>
         public delegate float FloatItemCallback(TList item);
-        
+
         /// <summary>
         /// This callback accepts the item and needs to return a double.
         /// </summary>
         /// <param name="item">The current item's value</param>
         public delegate double DoubleItemCallback(TList item);
-        
+
         /// <summary>
         /// This callback accepts the item and needs to return a long.
         /// </summary>
         /// <param name="item">The current item's value</param>
         public delegate long LongItemCallback(TList item);
-        
+
         /// <summary>
         /// This callback accepts the item and needs to return a boolean.
         /// </summary>
@@ -69,11 +69,11 @@ namespace Collections
         /// </summary>
         /// <param name="item">The current item's value</param>
         public delegate void VoidItemCallback(TList item);
-        
+
         #endregion
 
         #region CONSTRUCTOR
-        
+
         /// <summary>
         /// It's an empty constructor.
         /// </summary>
@@ -91,7 +91,7 @@ namespace Collections
         {
             AddRange(items);
         }
-        
+
         /// <summary>
         /// It can take multiple parameters of the list type and put it right into this
         /// collection.
@@ -103,7 +103,7 @@ namespace Collections
         }
 
         #endregion
-        
+
         #region REDUCE
 
         /// <summary>
@@ -121,16 +121,13 @@ namespace Collections
         {
             var result = initial;
 
-            Each(item =>
-            {
-                result = callable(result, item);
-            });
+            Each(item => { result = callable(result, item); });
 
             return result;
         }
-        
+
         #endregion
-        
+
         #region ALL
 
         /// <summary>
@@ -143,9 +140,9 @@ namespace Collections
         {
             return ToArray();
         }
-        
+
         #endregion
-        
+
         #region AVG
 
         /// <summary>
@@ -176,7 +173,7 @@ namespace Collections
         {
             return Avg(callable);
         }
-        
+
         /// <summary>
         /// Return the average value based on the return value of the callable.
         /// 
@@ -205,7 +202,7 @@ namespace Collections
         {
             return Avg(callable);
         }
-        
+
         /// <summary>
         /// Return the average value based on the return value of the callable.
         /// 
@@ -234,7 +231,7 @@ namespace Collections
         {
             return Avg(callable);
         }
-        
+
         /// <summary>
         /// Return the average value based on the return value of the callable.
         /// 
@@ -263,11 +260,11 @@ namespace Collections
         {
             return Avg(callable);
         }
-        
+
         #endregion
-        
+
         #region MEDIAN
-        
+
         /// <summary>
         /// Return the median value based on the return value of the callable.
         /// 
@@ -279,16 +276,13 @@ namespace Collections
         public virtual int Median(IntItemCallback callable)
         {
             var items = new List<int>();
-            Each(item =>
-            {
-                items.Add(callable(item));
-            });
-            
+            Each(item => { items.Add(callable(item)); });
+
             if (Count % 2 == 0)
             {
                 return (items[Count / 2 - 1] + items[Count / 2]) / 2;
             }
-            
+
             return items[Count / 2];
         }
 
@@ -303,19 +297,16 @@ namespace Collections
         public virtual float Median(FloatItemCallback callable)
         {
             var items = new List<float>();
-            Each(item =>
-            {
-                items.Add(callable(item));
-            });
-            
+            Each(item => { items.Add(callable(item)); });
+
             if (Count % 2 == 0)
             {
                 return (items[Count / 2 - 1] + items[Count / 2]) / 2f;
             }
-            
+
             return items[Count / 2];
         }
-        
+
         /// <summary>
         /// Return the median value based on the return value of the callable.
         /// 
@@ -327,19 +318,16 @@ namespace Collections
         public virtual double Median(DoubleItemCallback callable)
         {
             var items = new List<double>();
-            Each(item =>
-            {
-                items.Add(callable(item));
-            });
-            
+            Each(item => { items.Add(callable(item)); });
+
             if (Count % 2 == 0)
             {
                 return (items[Count / 2 - 1] + items[Count / 2]) / 2d;
             }
-            
+
             return items[Count / 2];
         }
-        
+
         /// <summary>
         /// Return the median value based on the return value of the callable.
         /// 
@@ -351,21 +339,18 @@ namespace Collections
         public virtual long Median(LongItemCallback callable)
         {
             var items = new List<long>();
-            Each(item =>
-            {
-                items.Add(callable(item));
-            });
-            
+            Each(item => { items.Add(callable(item)); });
+
             if (Count % 2 == 0)
             {
                 return (items[Count / 2 - 1] + items[Count / 2]) / 2L;
             }
-            
+
             return items[Count / 2];
         }
-        
+
         #endregion
-        
+
         #region MODE
 
         /// <summary>
@@ -393,16 +378,16 @@ namespace Collections
             });
 
             var result = new Collection<TList>();
-            
+
             var max = int.MinValue;
-            
-            foreach (var key in counts.Keys) 
+
+            foreach (var key in counts.Keys)
             {
                 if (counts[key] < max)
                 {
                     continue;
                 }
-   
+
                 if (counts[key] == max)
                 {
                     result.Add(key);
@@ -412,12 +397,12 @@ namespace Collections
                 max = counts[key];
                 result.Add(key);
             }
-            
+
             return new Collection<TList>(result);
         }
-        
+
         #endregion
-        
+
         #region DIFF
 
         /// <summary>
@@ -441,12 +426,12 @@ namespace Collections
                     diff.Add(item);
                 }
             });
- 
+
             return diff;
         }
-        
+
         #endregion
-        
+
         #region DUMP
 
         /// <summary>
@@ -459,7 +444,7 @@ namespace Collections
         public virtual Collection<TList> Dump()
         {
             Console.WriteLine(this);
-            
+
             return this;
         }
 
@@ -476,12 +461,12 @@ namespace Collections
 
             var items = Reduce((current, item) => current + item + ", ", "");
             items = items.Substring(0, items.Length - 2);
-            
+
             return string.Format("Collection<{0}> ({1}) [{2}]", type, Count, items);
         }
 
         #endregion
-        
+
         #region EACH
 
         /// <summary>
@@ -498,12 +483,12 @@ namespace Collections
             {
                 callable(item);
             }
-            
+
             return this;
         }
-        
+
         #endregion
-        
+
         #region EVERY
 
         /// <summary>
@@ -518,9 +503,9 @@ namespace Collections
         {
             return Reduce((value, item) => value && callable(item), true);
         }
-        
+
         #endregion
-        
+
         #region FILTER
 
         /// <summary>
@@ -539,13 +524,13 @@ namespace Collections
                 {
                     collection.Add(item);
                 }
-                
+
                 return collection;
             }, new Collection<TList>());
         }
-        
+
         #endregion
-        
+
         #region WHEN
 
         /// <summary>
@@ -560,8 +545,8 @@ namespace Collections
         /// <returns>The collection itself or the return result of the callable</returns>
         public virtual Collection<TList> When(bool shouldExecute, CollectionCallback callable)
         {
-            var collection = new Collection<TList>(All()); 
-            
+            var collection = new Collection<TList>(All());
+
             if (shouldExecute)
             {
                 collection = callable(collection);
@@ -569,7 +554,7 @@ namespace Collections
 
             return collection;
         }
-        
+
         #endregion
     }
 }

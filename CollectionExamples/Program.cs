@@ -26,22 +26,22 @@ namespace CollectionExamples
         {
             // Create a new collection with three integer values (10, 20, 30)
             var collection = new Collection<int>(10, 20, 30);
-            
+
             // Reduce this collection to a single integer value (sum)
             var result = collection.Reduce((value, item) => value + item, 0);
-            
+
             // Print the result to the console
             Console.WriteLine("Reduce result: " + result);
         }
-        
+
         private static void TestAll()
         {
             // Create a new collection with three integer values (10, 20, 30)
             var collection = new Collection<int>(10, 20, 30);
-            
+
             // Request all items
             var result = collection.All();
-            
+
             // Print the first item to the console
             Console.WriteLine("All result: " + result[0]);
         }
@@ -50,10 +50,10 @@ namespace CollectionExamples
         {
             // Create a new collection with three persons (the first argument is their age)
             var collection = new Collection<Person>(new Person(10), new Person(45), new Person(36));
-            
+
             // Calculate the average age
             var result = collection.Avg(person => person.Age);
-            
+
             // Print the result to the console
             Console.WriteLine("Avg result: " + result);
         }
@@ -62,10 +62,10 @@ namespace CollectionExamples
         {
             // Create a new collection with three persons (the first argument is their age)
             var collection = new Collection<Person>(new Person(10), new Person(45), new Person(36));
-            
+
             // Calculate the median age
             var result = collection.Median(person => person.Age);
-            
+
             // Print the result to the console
             Console.WriteLine("Median result: " + result);
         }
@@ -74,10 +74,10 @@ namespace CollectionExamples
         {
             // Create a new collection with six integers
             var collection = new Collection<int>(1, 1, 4, 1, 3, 3);
-            
+
             // Calculate the mode value
             var result = collection.Mode();
-            
+
             // Print rhe result to the console
             Console.WriteLine("Mode result: " + result);
         }
@@ -86,13 +86,13 @@ namespace CollectionExamples
         {
             // Create a new collection with three integers
             var collection = new Collection<int>(10, 20, 30);
-            
+
             // Create another collection with three integers
             var other = new Collection<int>(10, 30, 40);
-            
+
             // Calculate the diff collection
             var result = collection.Diff(other);
-            
+
             // Print the result to the console
             Console.WriteLine("Diff result: " + result);
         }
@@ -101,22 +101,22 @@ namespace CollectionExamples
         {
             // Create a new collection with three persons (the first argument is their age)
             var collection = new Collection<Person>(new Person(10), new Person(45), new Person(36));
-            
+
             // Iterate through each item and double their age
             var result = collection.Each(person => person.Age = person.Age * 2);
-            
+
             // Print the result to the console
-            Console.WriteLine("Each result: " + result); 
+            Console.WriteLine("Each result: " + result);
         }
 
         private static void TestEvery()
         {
             // Create a new collection with three integers
             var collection = new Collection<int>(10, 20, 30);
-            
+
             // Test if every item is greater than 8
             var result = collection.Every(item => item > 8);
-            
+
             // Print the result to the console
             Console.WriteLine("Every result: " + result);
         }
@@ -125,26 +125,26 @@ namespace CollectionExamples
         {
             // Create a new collection with three integers
             var collection = new Collection<int>(10, 20, 30);
-            
+
             // Filter by every item that is greater than 15
             var result = collection.Filter(item => item > 15);
-            
+
             // Print the result to the console
-            Console.WriteLine("Filter result: " + result); 
+            Console.WriteLine("Filter result: " + result);
         }
 
         private static void TestWhen()
         {
             // Create a new collection with three integers
             var collection = new Collection<int>(10, 20, 30);
-            
+
             // Add another item to the collection if the first argument is true
             var result = collection.When(true, col =>
             {
                 col.Add(40);
                 return col;
             });
-            
+
             // Print the result to the console
             Console.WriteLine("When result: " + result);
         }
