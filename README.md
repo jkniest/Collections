@@ -52,7 +52,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
  - [x] Method: Filter
  - [x] Method: When
  - [x] Method: First
- - [ ] Method: Implode
+ - [x] Method: Implode
  - [ ] Method: Intersect
  - [ ] Method: IsEmpty / IsNotEmpty
  - [ ] Method: Last

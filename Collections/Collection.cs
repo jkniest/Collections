@@ -573,5 +573,29 @@ namespace Collections
         }
 
         #endregion
+
+        #region IMPLODE
+
+        /// <summary>
+        /// Glue all items together as a big string (with a specific glue string)
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#implode
+        /// 
+        /// </summary>
+        /// <param name="glue">The glue charcter (default ", ")</param>
+        /// <returns>The imploded string</returns>
+        public virtual string Implode(string glue = ", ")
+        {
+            if (Count == 0)
+            {
+                return "";
+            }
+
+            var result = Reduce((current, item) => current + item.ToString() + glue, "");
+
+            return result.Substring(0, result.Length - glue.Length);
+        }
+
+        #endregion
     }
 }

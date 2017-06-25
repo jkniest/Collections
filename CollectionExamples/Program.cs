@@ -19,6 +19,7 @@ namespace CollectionExamples
             TestFilter();
             TestWhen();
             TestFirst();
+            TestImplode();
 
             Console.ReadKey(true);
         }
@@ -160,6 +161,18 @@ namespace CollectionExamples
 
             // Print the result to the console
             Console.WriteLine("First result: " + result);
+        }
+        
+        private static void TestImplode()
+        {
+            // Create a new collection with three integers
+            var collection = new Collection<int>(10, 20, 30);
+
+            // Implode all items
+            var result = collection.Implode();
+
+            // Print the result to the console
+            Console.WriteLine("Implode result: " + result);
         }
     }
 }
