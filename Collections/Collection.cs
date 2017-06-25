@@ -29,6 +29,12 @@ namespace Collections
         public delegate TReturn ReduceCallback<TReturn>(TReturn current, TList item);
 
         /// <summary>
+        /// This callback accepts the collection and needs to return it
+        /// </summary>
+        /// <param name="collection">A copy of the collection</param>
+        public delegate Collection<TList> CollectionCallback(Collection<TList> collection);
+        
+        /// <summary>
         /// This callback accepts the item and needs to return an integer.
         /// </summary>
         /// <param name="item">The current item's value</param>
@@ -536,6 +542,32 @@ namespace Collections
                 
                 return collection;
             }, new Collection<TList>());
+        }
+        
+        #endregion
+        
+        #region WHEN
+
+        /// <summary>
+        /// Run the given callable only when the first argument is true. The callable must return an instance
+        /// of the collection.
+        /// 
+        /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#when 
+        /// 
+        /// </summary>
+        /// <param name="shouldExecute">Should the callable be executed?</param>
+        /// <param name="callable">The callable that only runs when the first argument is true</param>
+        /// <returns>The collection itself or the return result of the callable</returns>
+        public virtual Collection<TList> When(bool shouldExecute, CollectionCallback callable)
+        {
+            var collection = new Collection<TList>(All()); 
+            
+            if (shouldExecute)
+            {
+                collection = callable(collection);
+            }
+
+            return collection;
         }
         
         #endregion

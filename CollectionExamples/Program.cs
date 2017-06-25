@@ -17,6 +17,7 @@ namespace CollectionExamples
             TestEach();
             TestEvery();
             TestFilter();
+            TestWhen();
 
             Console.ReadKey(true);
         }
@@ -130,6 +131,22 @@ namespace CollectionExamples
             
             // Print the result to the console
             Console.WriteLine("Filter result: " + result); 
+        }
+
+        private static void TestWhen()
+        {
+            // Create a new collection with three integers
+            var collection = new Collection<int>(10, 20, 30);
+            
+            // Add another item to the collection if the first argument is true
+            var result = collection.When(true, col =>
+            {
+                col.Add(40);
+                return col;
+            });
+            
+            // Print the result to the console
+            Console.WriteLine("When result: " + result);
         }
     }
 }
