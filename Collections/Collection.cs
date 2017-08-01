@@ -4,27 +4,30 @@ using System.Collections.Generic;
 namespace Collections
 {
     /// <summary>
-    /// This is a better collection for C#. It contains a bunch of useful methods to deal with
-    /// the items inside this collection. Please read the offical documentation for more examples:
+    /// A better collection for C#. The default collections of C# are kinda lame. They don't
+    /// provide a bunch of useful methods. This library fixes that.
     /// 
+    /// It contains a bunch of useful methods related to the items inside the collection.
+    /// 
+    /// You can find the offical documentation on github:
     /// https://github.com/jkniest/Collections/wiki
     /// 
-    /// It is highly inspired by Illuminates collection class for PHP and Laravel.
+    /// It is highly inspired by Illuminates / Laravel collections. (For PHP)
     /// 
     /// https://laravel.com/docs/5.4/collections
     /// https://laravel.com/api/5.4/Illuminate/Database/Eloquent/Collection.html
     /// 
     /// </summary>
-    /// <typeparam name="TList"></typeparam>
+    /// <typeparam name="TList">The type of the list</typeparam>
     public class Collection<TList> : List<TList>
     {
         #region PUBLIC_VARS
 
         /// <summary>
-        /// This callback is used for the reduce method.
+        /// Callable that is used for the 'Reduce' method.
         /// </summary>
         /// <param name="current">The current value</param>
-        /// <param name="item">The current item's value</param>
+        /// <param name="item">The current item</param>
         /// <typeparam name="TReturn">The return type of this callable</typeparam>
         public delegate TReturn ReduceCallback<TReturn>(TReturn current, TList item);
 

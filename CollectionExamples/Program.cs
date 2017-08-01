@@ -26,10 +26,10 @@ namespace CollectionExamples
 
         private static void TestReduce()
         {
-            // Create a new collection with three integer values (10, 20, 30)
+            // Create a new collection (3 integers: 10, 20, 30)
             var collection = new Collection<int>(10, 20, 30);
 
-            // Reduce this collection to a single integer value (sum)
+            // Reduce this collection to a single integer value (basically sum)
             var result = collection.Reduce((value, item) => value + item, 0);
 
             // Print the result to the console
@@ -38,10 +38,10 @@ namespace CollectionExamples
 
         private static void TestAll()
         {
-            // Create a new collection with three integer values (10, 20, 30)
+            // Create a new collection (3 integers: 10, 20, 30)
             var collection = new Collection<int>(10, 20, 30);
 
-            // Request all items
+            // Get all items (as an array)
             var result = collection.All();
 
             // Print the first item to the console
@@ -50,7 +50,7 @@ namespace CollectionExamples
 
         private static void TestAvg()
         {
-            // Create a new collection with three persons (the first argument is their age)
+            // Create a new collection (3 persons)
             var collection = new Collection<Person>(new Person(10), new Person(45), new Person(36));
 
             // Calculate the average age
@@ -62,7 +62,7 @@ namespace CollectionExamples
 
         private static void TestMedian()
         {
-            // Create a new collection with three persons (the first argument is their age)
+            // Create a new collection (3 persons)
             var collection = new Collection<Person>(new Person(10), new Person(45), new Person(36));
 
             // Calculate the median age
@@ -74,7 +74,7 @@ namespace CollectionExamples
 
         private static void TestMode()
         {
-            // Create a new collection with six integers
+            // Create a new collection (6 integers)
             var collection = new Collection<int>(1, 1, 4, 1, 3, 3);
 
             // Calculate the mode value
@@ -86,10 +86,10 @@ namespace CollectionExamples
 
         private static void TestDiff()
         {
-            // Create a new collection with three integers
+            // Create a new collection (3 integers)
             var collection = new Collection<int>(10, 20, 30);
 
-            // Create another collection with three integers
+            // Create another collection (3 integers)
             var other = new Collection<int>(10, 30, 40);
 
             // Calculate the diff collection
@@ -101,7 +101,7 @@ namespace CollectionExamples
 
         private static void TestEach()
         {
-            // Create a new collection with three persons (the first argument is their age)
+            // Create a new collection (3 persons)
             var collection = new Collection<Person>(new Person(10), new Person(45), new Person(36));
 
             // Iterate through each item and double their age
@@ -113,7 +113,7 @@ namespace CollectionExamples
 
         private static void TestEvery()
         {
-            // Create a new collection with three integers
+            // Create a new collection (3 integers)
             var collection = new Collection<int>(10, 20, 30);
 
             // Test if every item is greater than 8
@@ -125,7 +125,7 @@ namespace CollectionExamples
 
         private static void TestFilter()
         {
-            // Create a new collection with three integers
+            // Create a new collection (3 integers)
             var collection = new Collection<int>(10, 20, 30);
 
             // Filter by every item that is greater than 15
@@ -137,7 +137,7 @@ namespace CollectionExamples
 
         private static void TestWhen()
         {
-            // Create a new collection with three integers
+            // Create a new collection (3 integers)
             var collection = new Collection<int>(10, 20, 30);
 
             // Add another item to the collection if the first argument is true
@@ -153,7 +153,7 @@ namespace CollectionExamples
         
         private static void TestFirst()
         {
-            // Create a new collection with three integers
+            // Create a new collection (3 integers)
             var collection = new Collection<int>(10, 20, 30);
 
             // Fetch the first item
@@ -165,7 +165,7 @@ namespace CollectionExamples
         
         private static void TestImplode()
         {
-            // Create a new collection with three integers
+            // Create a new collection (3 integers)
             var collection = new Collection<int>(10, 20, 30);
 
             // Implode all items
