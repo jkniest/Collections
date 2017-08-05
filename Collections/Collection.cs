@@ -32,45 +32,46 @@ namespace Collections
         public delegate TReturn ReduceCallback<TReturn>(TReturn current, TList item);
 
         /// <summary>
-        /// This callback accepts the collection and needs to return it
+        /// This callable accepts the current collection.
+        /// Also a new collection or a modified version of the original must be returned.
         /// </summary>
-        /// <param name="collection">A copy of the collection</param>
+        /// <param name="collection">A copy of the current collection</param>
         public delegate Collection<TList> CollectionCallback(Collection<TList> collection);
 
         /// <summary>
-        /// This callback accepts the item and needs to return an integer.
+        /// A callable that accepts the current item and needs to return an integer.
         /// </summary>
-        /// <param name="item">The current item's value</param>
+        /// <param name="item">The current item</param>
         public delegate int IntItemCallback(TList item);
 
         /// <summary>
-        /// This callback accepts the item and needs to return a float.
+        /// A callable that accepts the current item and needs to return a float.
         /// </summary>
-        /// <param name="item">The current item's value</param>
+        /// <param name="item">The current item</param>
         public delegate float FloatItemCallback(TList item);
 
         /// <summary>
-        /// This callback accepts the item and needs to return a double.
+        /// A callable that accepts the current item and needs to return a double.
         /// </summary>
-        /// <param name="item">The current item's value</param>
+        /// <param name="item">The current item</param>
         public delegate double DoubleItemCallback(TList item);
 
         /// <summary>
-        /// This callback accepts the item and needs to return a long.
+        /// A callable that accepts the current item and needs to return a long.
         /// </summary>
-        /// <param name="item">The current item's value</param>
+        /// <param name="item">The current item</param>
         public delegate long LongItemCallback(TList item);
 
         /// <summary>
-        /// This callback accepts the item and needs to return a boolean.
+        /// A callable that accepts the current item and needs to return a boolean.
         /// </summary>
-        /// <param name="item">The current item's value</param>
+        /// <param name="item">The current item</param>
         public delegate bool BoolItemCallback(TList item);
 
         /// <summary>
-        /// This callback accepts the item and does not need to return anything.
+        /// A callable that accepts the current item and does not need to return anything.
         /// </summary>
-        /// <param name="item">The current item's value</param>
+        /// <param name="item">The current item</param>
         public delegate void VoidItemCallback(TList item);
 
         #endregion
@@ -78,7 +79,7 @@ namespace Collections
         #region CONSTRUCTOR
 
         /// <summary>
-        /// It's an empty constructor.
+        /// Empty constructor - Create a collection without initial data
         /// </summary>
         public Collection()
         {
@@ -86,20 +87,20 @@ namespace Collections
         }
 
         /// <summary>
-        /// It can take any enumerable type (lists, arrays, collections, etc..) and put it right
-        /// into this collection.
+        /// This constructor can take any enumerable type (list, array, ..) to fill the collection with
+        /// initial data.
         /// </summary>
-        /// <param name="items">The source</param>
+        /// <param name="items">The initial items</param>
         public Collection(IEnumerable<TList> items)
         {
             AddRange(items);
         }
 
         /// <summary>
-        /// It can take multiple parameters of the list type and put it right into this
+        /// This constructor can take multiple parameters and move them as initial items into the
         /// collection.
         /// </summary>
-        /// <param name="items">The source</param>
+        /// <param name="items">The initial items</param>
         public Collection(params TList[] items)
         {
             AddRange(items);
@@ -109,22 +110,25 @@ namespace Collections
 
         #region REDUCE
 
-        /// <summary>
-        /// The reduce method converts a collection into some other type. 
+        /// <summary> 
+        /// Converts a collection into some other type. 
         /// For example it could be used to sum the items (converting the collection to a single integer)
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#reduce
         /// 
         /// </summary>
-        /// <param name="callable">The callback that passes each item in this collection</param>
+        /// <param name="callable">The callback that is used for every single item</param>
         /// <param name="initial">The initial value</param>
-        /// <typeparam name="T">What type should be returned?</typeparam>
+        /// <typeparam name="T">Into which type should the collection be converted?</typeparam>
         /// <returns>The converted collection</returns>
         public virtual T Reduce<T>(ReduceCallback<T> callable, T initial)
         {
             var result = initial;
 
-            Each(item => { result = callable(result, item); });
+            foreach (var item in All())
+            {
+                result = callable.Invoke(result, item);
+            }
 
             return result;
         }
@@ -134,11 +138,11 @@ namespace Collections
         #region ALL
 
         /// <summary>
-        /// Return all items as an array. It is in fact an alias for the 'ToArray' method.
+        /// Return all items in this collection as a new array. 
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#all
         /// </summary>
-        /// <returns></returns>
+        /// <returns>All items as an array</returns>
         public TList[] All()
         {
             return ToArray();
@@ -149,12 +153,13 @@ namespace Collections
         #region AVG
 
         /// <summary>
-        /// Return the average value based on the return value of the callable.
+        /// Convert each item into a numeric value (via a callable).
+        /// Then return the average value of all returned numeric values.
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#avg
         /// 
         /// </summary>
-        /// <param name="callable">The callable that each item passes</param>
+        /// <param name="callable">The callable that is called for each item</param>
         /// <returns>The average value</returns>
         public virtual int Avg(IntItemCallback callable)
         {
@@ -164,13 +169,13 @@ namespace Collections
         }
 
         /// <summary>
-        /// Return the average value based on the return value of the callable.
-        /// Alias for 'Avg'
+        /// Convert each item into a numeric value (via a callable).
+        /// Then return the average value of all returned numeric values.
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#avg
         /// 
         /// </summary>
-        /// <param name="callable">The callable that each item passes</param>
+        /// <param name="callable">The callable that is called for each item</param>
         /// <returns>The average value</returns>
         public int Average(IntItemCallback callable)
         {
@@ -178,12 +183,13 @@ namespace Collections
         }
 
         /// <summary>
-        /// Return the average value based on the return value of the callable.
+        /// Convert each item into a numeric value (via a callable).
+        /// Then return the average value of all returned numeric values.
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#avg
         /// 
         /// </summary>
-        /// <param name="callable">The callable that each item passes</param>
+        /// <param name="callable">The callable that is called for each item</param>
         /// <returns>The average value</returns>
         public virtual float Avg(FloatItemCallback callable)
         {
@@ -193,13 +199,13 @@ namespace Collections
         }
 
         /// <summary>
-        /// Return the average value based on the return value of the callable.
-        /// Alias for 'Avg'
+        /// Convert each item into a numeric value (via a callable).
+        /// Then return the average value of all returned numeric values.
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#avg
         /// 
         /// </summary>
-        /// <param name="callable">The callable that each item passes</param>
+        /// <param name="callable">The callable that is called for each item</param>
         /// <returns>The average value</returns>
         public float Average(FloatItemCallback callable)
         {
@@ -207,12 +213,13 @@ namespace Collections
         }
 
         /// <summary>
-        /// Return the average value based on the return value of the callable.
+        /// Convert each item into a numeric value (via a callable).
+        /// Then return the average value of all returned numeric values.
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#avg
         /// 
         /// </summary>
-        /// <param name="callable">The callable that each item passes</param>
+        /// <param name="callable">The callable that is called for each item</param>
         /// <returns>The average value</returns>
         public virtual double Avg(DoubleItemCallback callable)
         {
@@ -222,13 +229,13 @@ namespace Collections
         }
 
         /// <summary>
-        /// Return the average value based on the return value of the callable.
-        /// Alias for 'Avg'
+        /// Convert each item into a numeric value (via a callable).
+        /// Then return the average value of all returned numeric values.
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#avg
         /// 
         /// </summary>
-        /// <param name="callable">The callable that each item passes</param>
+        /// <param name="callable">The callable that is called for each item</param>
         /// <returns>The average value</returns>
         public double Average(DoubleItemCallback callable)
         {
@@ -236,12 +243,13 @@ namespace Collections
         }
 
         /// <summary>
-        /// Return the average value based on the return value of the callable.
+        /// Convert each item into a numeric value (via a callable).
+        /// Then return the average value of all returned numeric values.
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#avg
         /// 
         /// </summary>
-        /// <param name="callable">The callable that each item passes</param>
+        /// <param name="callable">The callable that is called for each item</param>
         /// <returns>The average value</returns>
         public virtual long Avg(LongItemCallback callable)
         {
@@ -251,13 +259,13 @@ namespace Collections
         }
 
         /// <summary>
-        /// Return the average value based on the return value of the callable.
-        /// Alias for 'Avg'
+        /// Convert each item into a numeric value (via a callable).
+        /// Then return the average value of all returned numeric values.
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#avg
         /// 
         /// </summary>
-        /// <param name="callable">The callable that each item passes</param>
+        /// <param name="callable">The callable that is called for each item</param>
         /// <returns>The average value</returns>
         public long Average(LongItemCallback callable)
         {
@@ -269,12 +277,13 @@ namespace Collections
         #region MEDIAN
 
         /// <summary>
-        /// Return the median value based on the return value of the callable.
+        /// Convert each item into a numeric value (via a callable).
+        /// Then return the median value of all returned numeric values.
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#median
         /// 
         /// </summary>
-        /// <param name="callable">The callable that each item passes</param>
+        /// <param name="callable">The callable that is called for each item</param>
         /// <returns>The median value</returns>
         public virtual int Median(IntItemCallback callable)
         {
@@ -290,13 +299,14 @@ namespace Collections
         }
 
         /// <summary>
-        /// Return the median value based on the return value of the callable.
+        /// Convert each item into a numeric value (via a callable).
+        /// Then return the median value of all returned numeric values.
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#median
         /// 
         /// </summary>
-        /// <param name="callable">The callable that each item passes</param>
-        /// <returns>The average value</returns>
+        /// <param name="callable">The callable that is called for each item</param>
+        /// <returns>The median value</returns>
         public virtual float Median(FloatItemCallback callable)
         {
             var items = new List<float>();
@@ -311,13 +321,14 @@ namespace Collections
         }
 
         /// <summary>
-        /// Return the median value based on the return value of the callable.
+        /// Convert each item into a numeric value (via a callable).
+        /// Then return the median value of all returned numeric values.
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#median
         /// 
         /// </summary>
-        /// <param name="callable">The callable that each item passes</param>
-        /// <returns>The average value</returns>
+        /// <param name="callable">The callable that is called for each item</param>
+        /// <returns>The median value</returns>
         public virtual double Median(DoubleItemCallback callable)
         {
             var items = new List<double>();
@@ -332,13 +343,14 @@ namespace Collections
         }
 
         /// <summary>
-        /// Return the median value based on the return value of the callable.
+        /// Convert each item into a numeric value (via a callable).
+        /// Then return the median value of all returned numeric values.
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#median
         /// 
         /// </summary>
-        /// <param name="callable">The callable that each item passes</param>
-        /// <returns>The average value</returns>
+        /// <param name="callable">The callable that is called for each item</param>
+        /// <returns>The median value</returns>
         public virtual long Median(LongItemCallback callable)
         {
             var items = new List<long>();
@@ -358,7 +370,7 @@ namespace Collections
 
         /// <summary>
         /// Return the mode value of the collection. If there are multiple mode values then all of them
-        /// will be returned within a list.
+        /// will be returned within a collection.
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#mode 
         /// 
@@ -368,20 +380,12 @@ namespace Collections
         {
             var counts = new Dictionary<TList, int>();
 
-            Each(item =>
+            foreach (var item in All())
             {
-                if (counts.ContainsKey(item))
-                {
-                    counts[item] = counts[item] + 1;
-                }
-                else
-                {
-                    counts[item] = 1;
-                }
-            });
-
+                counts[item] = counts.ContainsKey(item) ? counts[item] + 1 : 1;
+            }
+            
             var result = new Collection<TList>();
-
             var max = int.MinValue;
 
             foreach (var key in counts.Keys)
@@ -409,8 +413,8 @@ namespace Collections
         #region DIFF
 
         /// <summary>
-        /// Compare the collection against another list (or array). It will return all values in the
-        /// original collection that are not present in the other collection.
+        /// Compare the collection against another enumerable (list, array, collection, ..). It will return 
+        /// all values in the original collection that are not present in the other collection.
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#diff
         /// 
@@ -421,14 +425,13 @@ namespace Collections
         {
             var diff = new Collection<TList>();
 
-            // Add all items that are in "self" but not in "other"
-            Each(item =>
+            foreach (var item in All())
             {
                 if (!other.Contains(item))
                 {
                     diff.Add(item);
-                }
-            });
+                }                
+            }
 
             return diff;
         }
@@ -454,7 +457,7 @@ namespace Collections
         /// <summary>
         /// Convert the collection to a string.
         /// 
-        /// Format: Collection<TYPE> (COUNT) [ItemA, ItemB]
+        /// Format: Collection TYPE (COUNT) [ItemA, ItemB]
         /// 
         /// </summary>
         /// <returns>The string version of this collection</returns>
@@ -473,12 +476,12 @@ namespace Collections
         #region EACH
 
         /// <summary>
-        /// Iterate through each item call the callable.
+        /// Run the callable for each item in the collection. It's like a fluent version of "foreach".
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#each
         /// 
         /// </summary>
-        /// <param name="callable">The callable that each item passes</param>
+        /// <param name="callable">The callable that is called for each item</param>
         /// <returns>Itself</returns>
         public virtual Collection<TList> Each(VoidItemCallback callable)
         {
@@ -495,12 +498,13 @@ namespace Collections
         #region EVERY
 
         /// <summary>
-        /// Test if every item in this collection passes a callable.
+        /// Run the callable for each item in the collection and check if all items are returning
+        /// true. If one does not, the test will fail.
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#every
         /// 
         /// </summary>
-        /// <param name="callable">The callable that each item must pass</param>
+        /// <param name="callable">The callable that is called for each item</param>
         /// <returns><c>true</c>, if all items passed the callable, otherwise <c>false</c></returns>
         public virtual bool Every(BoolItemCallback callable)
         {
@@ -512,12 +516,13 @@ namespace Collections
         #region FILTER
 
         /// <summary>
-        /// Return a new collection with all items that are passing the callable.
+        /// Run the callable for each item in this collection. Based on the return values
+        /// a new collection will be built (with all items that have returned true)
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#filter
         /// 
         /// </summary>
-        /// <param name="callable">The callable which is used as a filter</param>
+        /// <param name="callable">The callable that is called for each item</param>
         /// <returns>A new collection with all passed items</returns>
         public virtual Collection<TList> Filter(BoolItemCallback callable)
         {
@@ -568,7 +573,7 @@ namespace Collections
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#first 
         /// 
         /// </summary>
-        /// <param name="callable">A optional callable to filter the items</param>
+        /// <param name="callable">An optional callable to filter the items</param>
         /// <returns>The first item of the (filtered) collection</returns>
         public virtual TList First(BoolItemCallback callable = null)
         {
@@ -580,7 +585,7 @@ namespace Collections
         #region IMPLODE
 
         /// <summary>
-        /// Glue all items together as a big string (with a specific glue string)
+        /// Glue all items together as a big string (with a specified glue string)
         /// 
         /// Documentation: https://github.com/jkniest/Collections/wiki/Methods#implode
         /// 
